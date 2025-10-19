@@ -55,7 +55,7 @@
 
         /* Hero Background with grayscale and fade */
         #home {
-            background-image: url('data:image/jpeg;base64,'); /* This is where the processed image will go */
+            background-image: url('operations.jpg');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -108,16 +108,52 @@
             /* Ensure the item doesn't wrap */
             flex-shrink: 0;
         }
+
+        /* Dynamic color scheme variables (default values) */
+        :root {
+            --brand-dark: #181818;
+            --brand-medium: #242424;
+            --brand-accent: #C29F59;
+            --brand-accent-light: #D8B97A; /* lighter accent for hover/highlight */
+            --brand-text-light: #E0E0E0;
+            --brand-text-dark: #141414;
+            --brand-secondary: #A0A0A0;
+            /* rgb component helpers for alpha variants */
+            --brand-dark-rgb: 24, 24, 24;
+            --brand-medium-rgb: 36, 36, 36;
+            --brand-accent-rgb: 194, 159, 89;
+            --brand-secondary-rgb: 160, 160, 160;
+            /* header background color (defaults to site dark; update to exact hex if needed) */
+            --header-bg: var(--brand-dark);
+        }
+
+        /* Map Tailwind brand classes to CSS variables so we can swap palettes at runtime */
+        .bg-brand-dark { background-color: var(--brand-dark) !important; }
+        .bg-brand-medium { background-color: var(--brand-medium) !important; }
+        .bg-brand-accent, .hover\:bg-brand-accent:hover { background-color: var(--brand-accent) !important; }
+        .bg-brand-highlight, .hover\:bg-brand-highlight:hover { background-color: var(--brand-accent-light, var(--brand-accent)) !important; }
+        .bg-brand-dark\/95 { background-color: rgba(var(--brand-dark-rgb), 0.95) !important; }
+        .bg-brand-dark\/90 { background-color: rgba(var(--brand-dark-rgb), 0.90) !important; }
+
+        .text-brand-text-light { color: var(--brand-text-light) !important; }
+        .text-brand-text-dark { color: var(--brand-text-dark) !important; }
+        .text-brand-accent { color: var(--brand-accent) !important; }
+        .text-brand-secondary { color: var(--brand-secondary) !important; }
+
+        .border-brand-accent { border-color: var(--brand-accent) !important; }
+        .border-brand-accent\/30 { border-color: rgba(var(--brand-accent-rgb), 0.3) !important; }
+        .border-brand-accent\/50 { border-color: rgba(var(--brand-accent-rgb), 0.5) !important; }
+        .border-brand-secondary { border-color: var(--brand-secondary) !important; }
+        .border-brand-secondary\/30 { border-color: rgba(var(--brand-secondary-rgb), 0.3) !important; }
+        .bg-header { background-color: var(--header-bg) !important; }
     </style>
 </head>
 <body class="bg-brand-dark text-brand-text-light">
 
-    <!-- Fixed Navigation Header --><header class="fixed top-0 left-0 w-full bg-brand-dark/95 backdrop-blur-sm z-50 header-shadow">
-        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-20">
+    <!-- Fixed Navigation Header --><header class="fixed top-0 left-0 w-full bg-header z-50 header-shadow">
+        <nav class="px-0 flex justify-between items-center h-36">
             <!-- Logo/Branding --><a href="#home" class="flex items-center space-x-2">
-                <span class="text-2xl font-bold text-brand-accent">AI</span>
-                <!-- Hides the full title on small screens to save space -->
-                <span class="text-xl font-medium text-brand-text-light hidden sm:block">Huntsville AI & Automation</span>
+                <img src="largerlogo.jpg" alt="Huntsville AI & Automation Group logo" class="h-36 w-auto" />
             </a>
 
             <!-- Navigation Links --><div class="space-x-4 md:space-x-8 text-sm md:text-base">
@@ -129,11 +165,11 @@
         </nav>
     </header>
 
-    <main class="pt-20">
+    <main class="pt-36">
         
         <!-- === 1. HOME / HERO SECTION === --><section id="home" class="min-h-screen flex items-center justify-center p-8 lg:p-16">
             <div class="text-center max-w-4xl relative z-10"> <!-- Ensure text is above overlay --><h1 class="text-5xl md:text-7xl font-extrabold mb-6 leading-tight text-brand-text-light">
-                    Pioneering the Future of <span class="text-brand-accent block sm:inline">Intelligent Automation</span>
+                    Pioneering the Future of Huntsville through <span class="text-brand-accent block sm:inline">Intelligent Automation</span>
                 </h1>
                 <p class="text-xl md:text-2xl text-brand-secondary mb-10">
                     The Huntsville AI & Automation Group drives transformative change through cutting-edge Machine Learning and Robotic Process Automation solutions.
@@ -146,143 +182,108 @@
 
         <!-- --- --><!-- === 2. ABOUT US SECTION (Responsive Grid Layout) === --><section id="about" class="py-24 px-8 lg:px-16 bg-brand-medium">
             <div class="max-w-7xl mx-auto">
-                <h2 class="text-4xl font-bold text-center text-brand-accent mb-16">About Our Group</h2>
+                <h2 class="text-4xl font-bold text-center text-brand-accent mb-16">About Us</h2>
 
                 <!-- Main Grid stacks on mobile, becomes 2 columns on desktop -->
                 <div class="grid md:grid-cols-2 gap-12 items-center">
                     <div>
                         <p class="text-lg text-brand-text-light mb-6">
-                            Founded on the principles of innovation and efficiency, the Huntsville AI & Automation Group is dedicated to helping businesses in the Tennessee Valley and beyond unlock their full potential. We specialize in turning complex data into actionable insights and streamlining operations using the latest advancements in artificial intelligence.
+                            Huntsville AI & Automation Group is a Huntsville, Alabama–based consulting firm driven by a deep passion for problem-solving and innovation. Rooted in the city’s rich tradition of engineering excellence and technological advancement, our team brings together decades of combined experience in software engineering, artificial intelligence, IT, and cybersecurity. We specialize in helping organizations across multiple industries modernize their operations through intelligent automation, data-driven insights, and cutting-edge AI solutions. Guided by the same spirit of innovation that defines Huntsville, we partner with businesses to streamline processes, enhance efficiency, and unlock new levels of performance in the digital age.
                         </p>
-                        <p class="text-lg text-brand-text-light mb-6 font-semibold">
-                            Our mission is simple: Deliver measurable results through ethical, scalable, and intelligent automation.
-                        </p>
-                        <ul class="space-y-3 text-brand-secondary">
-                            <li class="flex items-start">
-                                <span class="text-brand-accent mr-2 font-bold">&bull;</span> Focus on High-Value Digital Transformation
-                            </li>
-                            <li class="flex items-start">
-                                <span class="text-brand-accent mr-2 font-bold">&bull;</span> Expertise in Defense, Logistics, and Manufacturing
-                            </li>
-                            <li class="flex items-start">
-                                <span class="text-brand-accent mr-2 font-bold">&bull;</span> Committed to Data Security and Privacy
-                            </li>
-                        </ul>
                     </div>
+                    <!-- Updated: Changed from Leadership Spotlight to General Ethos/Impact Block -->
                     <div class="bg-brand-dark p-8 rounded-xl shadow-2xl">
-                        <h3 class="text-2xl font-semibold text-brand-text-light mb-4">Leadership Spotlight</h3>
-                        <p class="text-lg text-brand-accent mb-2">Jeffrey English, Co-Founder</p>
+                        <h3 class="text-2xl font-semibold text-brand-text-light mb-4">Driven by Impact</h3>
+                        <p class="text-lg text-brand-accent mb-2">A Partnership for Progress</p>
                         <p class="text-brand-secondary">
-                            Jeffrey brings decades of experience at the intersection of enterprise technology and strategic development. His vision guides our team in creating robust solutions that not only automate tasks but also provide a competitive analytical edge for our clients.
+                            Our core commitment is to measurable results. We focus on ethical AI deployment, maximizing ROI through strategic automation, and empowering our clients to navigate the complexities of digital transformation with confidence and clarity.
                         </p>
                     </div>
+                    <!-- End Updated Block -->
                 </div>
 
-                <!-- NEW STAFF SECTION -->
+                <!-- TEAM SECTION - Desktop grid (original style), mobile uses modal for details -->
                 <div class="mt-20">
                     <h3 class="text-3xl font-bold text-center text-brand-text-light mb-12 border-b border-brand-accent/50 pb-4">Meet Our Core Team</h3>
                     
-                    <!-- Team Grid: Displays 2 columns on mobile (sm) and 2 columns on desktop (lg) -->
+                    <!-- Grid: 2 columns on sm and lg -->
                     <div class="grid sm:grid-cols-2 lg:grid-cols-2 gap-8">
-                        
-                        <!-- Staff Card 1 -->
-                        <div class="bg-brand-dark p-6 rounded-xl text-center card-hover shadow-lg">
-                            <!-- To add a headshot, replace the <div> below with: -->
-                            <!-- <img src="[URL_TO_AISHA'S_HEADSHOT]" alt="Aisha Khan Headshot" class="w-20 h-20 mx-auto object-cover rounded-full mb-4"> -->
-                            <div class="w-20 h-20 mx-auto rounded-full bg-brand-accent/20 flex items-center justify-center mb-4">
-                                <span class="text-3xl font-bold text-brand-accent">A</span>
+                        <!-- Card: Jeffrey English -->
+                        <div class="bg-brand-dark p-6 rounded-xl card-hover shadow-lg md:flex md:items-start md:gap-6">
+                            <img src="jeffrey.jpg" alt="Jeffrey English Headshot" class="w-20 h-20 md:w-36 md:h-36 mx-auto md:mx-0 object-cover rounded-full mb-4 md:mb-0" />
+                            <div class="md:flex-1 text-center md:text-left">
+                                <p class="text-xl md:text-2xl font-semibold text-brand-text-light">Jeffrey English</p>
+                                <p class="text-sm text-brand-accent font-medium">Co-Founder</p>
+                                <!-- Long description on desktop -->
+                                <div class="text-sm text-brand-secondary mt-4 hidden md:block space-y-4">
+                                    <p>As a proud Huntsville native, Jeffrey combines a deep passion for innovation with a lifelong commitment to advancing technology in his hometown. His drive is fueled by a genuine love for problem-solving and a desire to see Huntsville emerge as a leading hub for technology and forward-thinking solutions.</p>
+                                    <p>Jeffrey possesses an extensive technical background, with expertise spanning software engineering, system administration, IT and cloud infrastructure, cybersecurity, and artificial intelligence. He currently serves as a research engineer at a cyber-engineering research center, where he has gained experience across diverse development environments, led cutting-edge projects, and taken on significant leadership responsibilities.</p>
+                                    <p>Academically accomplished, Jeffrey holds Bachelor’s degrees in Information Systems and Digital Marketing, as well as a Master’s in Cybersecurity, complemented by several highly regarded cybersecurity certifications. He is currently pursuing a Master’s in Computer Engineering, with plans to continue toward a CPE-focused PhD, reflecting his commitment to lifelong learning and innovation.</p>
+                                    <p>Driven, passionate, and purpose-oriented, Jeffrey strives to combine technical excellence with visionary leadership—creating solutions that not only advance his field but also positively impact the community he calls home.</p>
+                                </div>
+                                <!-- Mobile: open modal for details -->
+                                <button class="mt-4 md:hidden px-4 py-2 bg-brand-accent text-brand-text-dark rounded-lg hover:bg-brand-highlight transition" data-open-modal data-name="Jeffrey English" data-title="Co-Founder" data-image="jeffrey.jpg" data-description="As a proud Huntsville native, Jeffrey combines a deep passion for innovation with a lifelong commitment to advancing technology in his hometown. His drive is fueled by a genuine love for problem-solving and a desire to see Huntsville emerge as a leading hub for technology and forward-thinking solutions.\n\nJeffrey possesses an extensive technical background, with expertise spanning software engineering, system administration, IT and cloud infrastructure, cybersecurity, and artificial intelligence. He currently serves as a research engineer at a cyber-engineering research center, where he has gained experience across diverse development environments, led cutting-edge projects, and taken on significant leadership responsibilities.\n\nAcademically accomplished, Jeffrey holds Bachelor’s degrees in Information Systems and Digital Marketing, as well as a Master’s in Cybersecurity, complemented by several highly regarded cybersecurity certifications. He is currently pursuing a Master’s in Computer Engineering, with plans to continue toward a CPE-focused PhD, reflecting his commitment to lifelong learning and innovation.\n\nDriven, passionate, and purpose-oriented, Jeffrey strives to combine technical excellence with visionary leadership—creating solutions that not only advance his field but also positively impact the community he calls home.">View Details</button>
                             </div>
-                            <p class="text-xl font-semibold text-brand-text-light">Aisha Khan</p>
-                            <p class="text-sm text-brand-accent font-medium">Lead ML Engineer</p>
-                            <p class="text-sm text-brand-secondary mt-2">Specializes in neural network optimization for defense logistics.</p>
                         </div>
 
-                        <!-- Staff Card 2 -->
-                        <div class="bg-brand-dark p-6 rounded-xl text-center card-hover shadow-lg">
-                            <!-- To add a headshot, replace the <div> below with: -->
-                            <!-- <img src="[URL_TO_ROBERT'S_HEADSHOT]" alt="Robert Chen Headshot" class="w-20 h-20 mx-auto object-cover rounded-full mb-4"> -->
-                            <div class="w-20 h-20 mx-auto rounded-full bg-brand-accent/20 flex items-center justify-center mb-4">
-                                <span class="text-3xl font-bold text-brand-accent">R</span>
+                        <!-- Card: Tristan Morris -->
+                        <div class="bg-brand-dark p-6 rounded-xl card-hover shadow-lg md:flex md:items-start md:gap-6">
+                            <img src="tristan.jpg" alt="Tristan Morris Headshot" class="w-20 h-20 md:w-36 md:h-36 mx-auto md:mx-0 object-cover rounded-full mb-4 md:mb-0" />
+                            <div class="md:flex-1 text-center md:text-left">
+                                <p class="text-xl md:text-2xl font-semibold text-brand-text-light">Tristan Morris</p>
+                                <p class="text-sm text-brand-accent font-medium">Co-Founder</p>
+                                <p class="text-sm text-brand-secondary mt-2 hidden md:block">Leads business development and client success across the automation portfolio.</p>
+                                <button class="mt-4 md:hidden px-4 py-2 bg-brand-accent text-brand-text-dark rounded-lg hover:bg-brand-highlight transition" data-open-modal data-name="Tristan Morris" data-title="Co-Founder" data-description="Leads business development and client success across the automation portfolio." data-image="tristan.jpg">View Details</button>
                             </div>
-                            <p class="text-xl font-semibold text-brand-text-light">Robert Chen</p>
-                            <p class="text-sm text-brand-accent font-medium">RPA Architect</p>
-                            <p class="text-sm text-brand-secondary mt-2">Expert in UiPath and Blue Prism implementations across finance sectors.</p>
                         </div>
 
-                        <!-- Staff Card 3 -->
-                        <div class="bg-brand-dark p-6 rounded-xl text-center card-hover shadow-lg">
-                            <!-- To add a headshot, replace the <div> below with: -->
-                            <!-- <img src="[URL_TO_SOFIA'S_HEADSHOT]" alt="Sofia Ramirez Headshot" class="w-20 h-20 mx-auto object-cover rounded-full mb-4"> -->
-                            <div class="w-20 h-20 mx-auto rounded-full bg-brand-accent/20 flex items-center justify-center mb-4">
-                                <span class="text-3xl font-bold text-brand-accent">S</span>
+                        <!-- Card: Matt Nash -->
+                        <div class="bg-brand-dark p-6 rounded-xl card-hover shadow-lg md:flex md:items-start md:gap-6 sm:col-span-2 sm:max-w-3xl sm:mx-auto">
+                            <img src="matt.jpg" alt="Matt Nash Headshot" class="w-20 h-20 md:w-36 md:h-36 mx-auto md:mx-0 object-cover rounded-full mb-4 md:mb-0" />
+                            <div class="md:flex-1 text-center md:text-left">
+                                <p class="text-xl md:text-2xl font-semibold text-brand-text-light">Matt Nash</p>
+                                <p class="text-sm text-brand-accent font-medium">Chief of Staff &amp; Lead Engineer</p>
+                                <div class="text-sm text-brand-secondary mt-2 hidden md:block space-y-4">
+                                    <p>With extensive experience spanning Information Systems, Software Engineering, and B2B account sales, Matt brings a unique combination of technical expertise and strategic business insight to every project. Adept at analyzing complex systems and designing efficient, scalable solutions, he thrives on solving challenging problems and driving innovation.</p>
+                                    <p>As a Chief of Staff and Lead Engineer, he has successfully bridged the gap between technical teams and business stakeholders, ensuring projects align with organizational goals while delivering high-quality results. His experience in B2B account sales provides him with a keen understanding of client needs, enabling him to tailor solutions that maximize value and foster long-term partnerships.</p>
+                                    <p>Passionate about problem-solving and continuous improvement, Matt approaches each engagement with a focus on actionable outcomes, efficiency, and measurable impact. Whether leading technical initiatives, optimizing business processes, or advising on technology strategy, he combines analytical rigor with practical execution to deliver results that matter.</p>
+                                </div>
+                                <button class="mt-4 md:hidden px-4 py-2 bg-brand-accent text-brand-text-dark rounded-lg hover:bg-brand-highlight transition" data-open-modal data-name="Matt Nash" data-title="Chief of Staff &amp; Lead Engineer" data-description="With extensive experience spanning Information Systems, Software Engineering, and B2B account sales, Matt brings a unique combination of technical expertise and strategic business insight to every project. Adept at analyzing complex systems and designing efficient, scalable solutions, he thrives on solving challenging problems and driving innovation.\n\nAs a Chief of Staff and Lead Engineer, he has successfully bridged the gap between technical teams and business stakeholders, ensuring projects align with organizational goals while delivering high-quality results. His experience in B2B account sales provides him with a keen understanding of client needs, enabling him to tailor solutions that maximize value and foster long-term partnerships.\n\nPassionate about problem-solving and continuous improvement, Matt approaches each engagement with a focus on actionable outcomes, efficiency, and measurable impact. Whether leading technical initiatives, optimizing business processes, or advising on technology strategy, he combines analytical rigor with practical execution to deliver results that matter." data-image="matt.jpg">View Details</button>
                             </div>
-                            <p class="text-xl font-semibold text-brand-text-light">Sofia Ramirez</p>
-                            <p class="text-sm text-brand-accent font-medium">Data Strategist</p>
-                            <p class="text-sm text-brand-secondary mt-2">Focuses on cloud data warehouse architecture and governance (AWS/Azure).</p>
                         </div>
-
-                        <!-- Staff Card 4 -->
-                        <div class="bg-brand-dark p-6 rounded-xl text-center card-hover shadow-lg">
-                            <!-- To add a headshot, replace the <div> below with: -->
-                            <!-- <img src="[URL_TO_DAVID'S_HEADSHOT]" alt="David Lee Headshot" class="w-20 h-20 mx-auto object-cover rounded-full mb-4"> -->
-                            <div class="w-20 h-20 mx-auto rounded-full bg-brand-accent/20 flex items-center justify-center mb-4">
-                                <span class="text-3xl font-bold text-brand-accent">D</span>
-                            </div>
-                            <p class="text-xl font-semibold text-brand-text-light">David Lee</p>
-                            <p class="text-sm text-brand-accent font-medium">Solutions Consultant</p>
-                            <p class="text-sm text-brand-secondary mt-2">Bridges the gap between technical teams and client business needs.</p>
-                        </div>
-
                     </div>
                 </div>
-                <!-- END NEW STAFF SECTION -->
+                <!-- END TEAM SECTION -->
                 
-                <!-- NEW ADVISORY BOARD SECTION -->
+                <!-- ADVISORY BOARD - Desktop grid, mobile modal for details -->
                 <div class="mt-20">
                     <h3 class="text-3xl font-bold text-center text-brand-text-light mb-12 border-b border-brand-accent/50 pb-4">Strategic Advisory Board</h3>
-                    
-                    <!-- Advisor Grid: 2 columns on mobile (sm), 3 columns on large screens (lg) - unchanged -->
-                    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                        
-                        <!-- Advisor Card 1 -->
-                        <div class="bg-brand-dark p-6 rounded-xl text-center card-hover shadow-lg border-2 border-brand-accent/50">
-                            <!-- To add a headshot, replace the <div> below with: -->
-                            <!-- <img src="[URL_TO_MARCUS'S_HEADSHOT]" alt="Marcus Holt Headshot" class="w-20 h-20 mx-auto object-cover rounded-full mb-4"> -->
-                            <div class="w-20 h-20 mx-auto rounded-full bg-brand-accent/20 flex items-center justify-center mb-4">
-                                <span class="text-3xl font-bold text-brand-accent">M</span>
+
+                    <div class="max-w-7xl mx-auto grid sm:grid-cols-1 md:grid-cols-2 gap-8">
+                        <!-- Advisor: Dr. Jeremy Davis -->
+                        <div class="bg-brand-dark p-6 rounded-xl card-hover shadow-lg border-2 border-brand-accent/50 md:flex md:items-start md:gap-6">
+                            <img src="jeremy.jpg" alt="Dr. Jeremy Davis Headshot" class="w-20 h-20 md:w-36 md:h-36 mx-auto md:mx-0 object-cover rounded-full mb-4 md:mb-0" />
+                            <div class="md:flex-1 text-center md:text-left">
+                                <p class="text-xl md:text-2xl font-semibold text-brand-text-light">Dr. Jeremy Davis</p>
+                                <p class="text-sm text-brand-accent font-medium">AI Development &amp; Integration</p>
+                                <p class="text-sm text-brand-secondary mt-2 hidden md:block">Leading expert in ethical data governance and future-proofing enterprise AI systems.</p>
+                                <button class="mt-4 md:hidden px-4 py-2 bg-brand-accent text-brand-text-dark rounded-lg hover:bg-brand-highlight transition" data-open-modal data-name="Dr. Jeremy Davis" data-title="AI Development &amp; Integration" data-description="Leading expert in ethical data governance and future-proofing enterprise AI systems." data-image="jeremy.jpg">View Details</button>
                             </div>
-                            <p class="text-xl font-semibold text-brand-text-light">Marcus Holt</p>
-                            <p class="text-sm text-brand-accent font-medium">Defense Technology Expert</p>
-                            <p class="text-sm text-brand-secondary mt-2">Provides strategic guidance on emerging technologies for government clients.</p>
                         </div>
 
-                        <!-- Advisor Card 2 -->
-                        <div class="bg-brand-dark p-6 rounded-xl text-center card-hover shadow-lg border-2 border-brand-accent/50">
-                            <!-- To add a headshot, replace the <div> below with: -->
-                            <!-- <img src="[URL_TO_ELARA'S_HEADSHOT]" alt="Dr. Elara Varma Headshot" class="w-20 h-20 mx-auto object-cover rounded-full mb-4"> -->
-                            <div class="w-20 h-20 mx-auto rounded-full bg-brand-accent/20 flex items-center justify-center mb-4">
-                                <span class="text-3xl font-bold text-brand-accent">E</span>
+                        <!-- Advisor: Tyler Maze -->
+                        <div class="bg-brand-dark p-6 rounded-xl card-hover shadow-lg border-2 border-brand-accent/50 md:flex md:items-start md:gap-6">
+                            <img src="tyler.jpg" alt="Tyler Maze Headshot" class="w-20 h-20 md:w-36 md:h-36 mx-auto md:mx-0 object-cover rounded-full mb-4 md:mb-0" />
+                            <div class="md:flex-1 text-center md:text-left">
+                                <p class="text-xl md:text-2xl font-semibold text-brand-text-light">Tyler Maze</p>
+                                <p class="text-sm text-brand-accent font-medium">Business Development &amp; Strategy</p>
+                            <p class="text-sm text-brand-secondary mt-2 hidden md:block">Tyler is a highly connected and influential figure in Huntsville, known for his ability to bring the right people together to make big things happen. Tyler has a history of successfully brokering high-profile deals, spanning sports franchises, business development initiatives, and property transactions. In his role as a Business Development &amp; Strategy consultant, Tyler serves as the organization’s ultimate “connector,” leveraging his extensive network to create opportunities that benefit both businesses and the community. Passionate about seeing Huntsville thrive, he is committed to uniting the city’s best and brightest to drive growth, innovation, and long-term success.</p>
+                            <button class="mt-4 md:hidden px-4 py-2 bg-brand-accent text-brand-text-dark rounded-lg hover:bg-brand-highlight transition" data-open-modal data-name="Tyler Maze" data-title="Business Development &amp; Strategy" data-description="Tyler is a highly connected and influential figure in Huntsville, known for his ability to bring the right people together to make big things happen. Tyler has a history of successfully brokering high-profile deals, spanning sports franchises, business development initiatives, and property transactions. In his role as a Business Development &amp; Strategy consultant, Tyler serves as the organization’s ultimate “connector,” leveraging his extensive network to create opportunities that benefit both businesses and the community. Passionate about seeing Huntsville thrive, he is committed to uniting the city’s best and brightest to drive growth, innovation, and long-term success." data-image="tyler.jpg">View Details</button>
                             </div>
-                            <p class="text-xl font-semibold text-brand-text-light">Dr. Elara Varma</p>
-                            <p class="text-sm text-brand-accent font-medium">Ethics & Data Governance</p>
-                            <p class="text-sm text-brand-secondary mt-2">A leading voice ensuring our AI development remains ethical and responsible.</p>
                         </div>
-
-                        <!-- Advisor Card 3 -->
-                        <div class="bg-brand-dark p-6 rounded-xl text-center card-hover shadow-lg border-2 border-brand-accent/50">
-                            <!-- To add a headshot, replace the <div> below with: -->
-                            <!-- <img src="[URL_TO_CARLA'S_HEADSHOT]" alt="Carla Jones Headshot" class="w-20 h-20 mx-auto object-cover rounded-full mb-4"> -->
-                            <div class="w-20 h-20 mx-auto rounded-full bg-brand-accent/20 flex items-center justify-center mb-4">
-                                <span class="text-3xl font-bold text-brand-accent">C</span>
-                            </div>
-                            <p class="text-xl font-semibold text-brand-text-light">Carla Jones</p>
-                            <p class="text-sm text-brand-accent font-medium">Manufacturing Automation Veteran</p>
-                            <p class="text-sm text-brand-secondary mt-2">Advises on industrial IoT integration and efficiency in large-scale production.</p>
-                        </div>
-
                     </div>
                 </div>
-                <!-- END NEW ADVISORY BOARD SECTION -->
+                <!-- END ADVISORY BOARD -->
 
             </div>
         </section>
@@ -295,25 +296,25 @@
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <!-- Service Card 1 --><div class="bg-brand-medium p-8 rounded-xl card-hover transition duration-500 shadow-lg border border-brand-accent/30">
                         <div class="text-3xl text-brand-accent mb-4">🤖</div>
-                        <h3 class="text-xl font-semibold mb-3 text-brand-text-light">Intelligent Process Automation (IPA)</h3>
+                        <h3 class="text-xl font-semibold mb-3 text-brand-text-light">Business Process Optimization</h3>
                         <p class="text-brand-secondary">
-                            We deploy cutting-edge RPA combined with cognitive services to automate complex, decision-heavy business processes, significantly boosting operational speed and accuracy.
+                            Analyze and redesign critical workflows to remove bottlenecks, reduce cycle time, and improve quality. We combine lean methods, automation, and measurement to deliver clear ROI and sustainable operational gains.
                         </p>
                     </div>
 
                     <!-- Service Card 2 --><div class="bg-brand-medium p-8 rounded-xl card-hover transition duration-500 shadow-lg border border-brand-accent/30">
                         <div class="text-3xl text-brand-accent mb-4">🧠</div>
-                        <h3 class="text-xl font-semibold mb-3 text-brand-text-light">Machine Learning & Prediction</h3>
+                        <h3 class="text-xl font-semibold mb-3 text-brand-text-light">AI Integrations, Solutions, and Implementations</h3>
                         <p class="text-brand-secondary">
-                            From predictive maintenance models to advanced forecasting and natural language processing (NLP), our data science team builds custom ML models tailored to your challenges.
+                            We are experts in AI integrations and implementations, fine-tuning models, and developing models from scratch. From connecting SaaS and on‑prem systems to building secure data pipelines and MLOps, we deliver end‑to‑end AI solutions that scale in production.
                         </p>
                     </div>
 
                     <!-- Service Card 3 --><div class="bg-brand-medium p-8 rounded-xl card-hover transition duration-500 shadow-lg border border-brand-accent/30">
                         <div class="text-3xl text-brand-accent mb-4">📊</div>
-                        <h3 class="text-xl font-semibold mb-3 text-brand-text-light">Data Strategy & Engineering</h3>
+                        <h3 class="text-xl font-semibold mb-3 text-brand-text-light">Consulting & Guidance</h3>
                         <p class="text-brand-secondary">
-                            Establish a robust data foundation. We architect cloud-native pipelines, ensure data governance, and prepare your organization for large-scale AI adoption.
+                            Vendor‑agnostic advisory across strategy, governance, risk, compliance, and architecture. We create practical roadmaps, prioritize high‑value use cases, and enable your teams through training and change management.
                         </p>
                     </div>
                 </div>
@@ -444,12 +445,75 @@
         </section>
     </main>
 
+    <!-- Person Details Modal -->
+    <div id="person-modal" class="fixed inset-0 bg-black/60 hidden items-center justify-center z-[60]">
+        <div class="bg-brand-dark rounded-xl max-w-md w-11/12 p-6 relative border border-brand-secondary/30">
+            <button class="absolute top-2 right-2 px-2 py-1 text-brand-secondary hover:text-brand-text-light" data-close-modal>&times;</button>
+            <div class="text-center">
+                <img id="modal-image" src="" alt="" class="w-24 h-24 mx-auto object-cover rounded-full mb-4" />
+                <p id="modal-name" class="text-2xl font-semibold text-brand-text-light"></p>
+                <p id="modal-title" class="text-sm text-brand-accent font-medium mt-1"></p>
+                <p id="modal-description" class="text-sm text-brand-secondary mt-4"></p>
+            </div>
+        </div>
+    </div>
+
     <!-- Footer --><footer class="bg-brand-dark/90 text-brand-secondary py-8 text-center border-t border-brand-secondary/30">
         <p>&copy; <span id="year"></span> Huntsville AI & Automation Group. All rights reserved. | Built with Intelligence.</p>
     </footer>
 
     <script>
-        document.getElementById('year').textContent = new Date().getFullYear();
+        // Footer year
+        (function(){
+            var yearEl = document.getElementById('year');
+            if (yearEl) yearEl.textContent = new Date().getFullYear();
+        })();
+
+        // (no carousel needed on desktop; mobile uses modal only)
+
+        // Modal for mobile details
+        (function(){
+            var modal = document.getElementById('person-modal');
+            if (!modal) return;
+            var imgEl = document.getElementById('modal-image');
+            var nameEl = document.getElementById('modal-name');
+            var titleEl = document.getElementById('modal-title');
+            var descEl = document.getElementById('modal-description');
+
+            function openModal(fromEl){
+                if (!fromEl) return;
+                var name = fromEl.getAttribute('data-name') || '';
+                var title = fromEl.getAttribute('data-title') || '';
+                var description = fromEl.getAttribute('data-description') || '';
+                var image = fromEl.getAttribute('data-image') || '';
+                if (imgEl) imgEl.src = image;
+                if (imgEl) imgEl.alt = name + ' Headshot';
+                if (nameEl) nameEl.textContent = name;
+                if (titleEl) titleEl.textContent = title;
+                if (descEl) descEl.textContent = description;
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+            }
+
+            function closeModal(){
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            }
+
+            // Open from any element with data-open-modal
+            var openers = document.querySelectorAll('[data-open-modal]');
+            for (var k = 0; k < openers.length; k++) {
+                openers[k].addEventListener('click', function(e){
+                    openModal(e.currentTarget);
+                });
+            }
+
+            // Close on X button or backdrop click
+            var closeBtn = modal.querySelector('[\[data-close-modal\]=\"\"]') || modal.querySelector('[data-close-modal]');
+            if (closeBtn) closeBtn.addEventListener('click', closeModal);
+            modal.addEventListener('click', function(e){ if (e.target === modal) closeModal(); });
+            document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeModal(); });
+        })();
     </script>
 </body>
 </html>
