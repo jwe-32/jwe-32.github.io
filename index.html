@@ -151,9 +151,9 @@
 <body class="bg-brand-dark text-brand-text-light">
 
     <!-- Fixed Navigation Header --><header class="fixed top-0 left-0 w-full bg-header z-50 header-shadow">
-        <nav class="px-0 flex justify-between items-center h-36">
+        <nav class="px-0 flex justify-between items-center h-20 md:h-36">
             <!-- Logo/Branding --><a href="#home" class="flex items-center space-x-2">
-                <img src="largerlogo.jpg" alt="Huntsville AI & Automation Group logo" class="h-36 w-auto" />
+                <img src="largerlogo.jpg" alt="Huntsville AI & Automation Group logo" class="h-16 md:h-36 w-auto" />
             </a>
 
             <!-- Navigation Links --><div class="space-x-4 md:space-x-8 text-sm md:text-base">
@@ -165,7 +165,7 @@
         </nav>
     </header>
 
-    <main class="pt-36">
+    <main class="pt-20 md:pt-36">
         
         <!-- === 1. HOME / HERO SECTION === --><section id="home" class="min-h-screen flex items-center justify-center p-8 lg:p-16">
             <div class="text-center max-w-4xl relative z-10"> <!-- Ensure text is above overlay --><h1 class="text-5xl md:text-7xl font-extrabold mb-6 leading-tight text-brand-text-light">
@@ -447,13 +447,13 @@
 
     <!-- Person Details Modal -->
     <div id="person-modal" class="fixed inset-0 bg-black/60 hidden items-center justify-center z-[60]">
-        <div class="bg-brand-dark rounded-xl max-w-md w-11/12 p-6 relative border border-brand-secondary/30">
+        <div class="bg-brand-dark rounded-xl max-w-md w-11/12 md:w-auto md:max-w-lg p-4 md:p-6 relative border border-brand-secondary/30 max-h-[80vh] overflow-y-auto">
             <button class="absolute top-2 right-2 px-2 py-1 text-brand-secondary hover:text-brand-text-light" data-close-modal>&times;</button>
             <div class="text-center">
-                <img id="modal-image" src="" alt="" class="w-24 h-24 mx-auto object-cover rounded-full mb-4" />
-                <p id="modal-name" class="text-2xl font-semibold text-brand-text-light"></p>
-                <p id="modal-title" class="text-sm text-brand-accent font-medium mt-1"></p>
-                <p id="modal-description" class="text-sm text-brand-secondary mt-4"></p>
+                <img id="modal-image" src="" alt="" class="w-20 h-20 md:w-24 md:h-24 mx-auto object-cover rounded-full mb-3 md:mb-4" />
+                <p id="modal-name" class="text-xl md:text-2xl font-semibold text-brand-text-light"></p>
+                <p id="modal-title" class="text-xs md:text-sm text-brand-accent font-medium mt-1"></p>
+                <p id="modal-description" class="text-sm text-brand-secondary mt-3 md:mt-4 text-left whitespace-pre-line"></p>
             </div>
         </div>
     </div>
