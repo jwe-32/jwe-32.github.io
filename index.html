@@ -165,13 +165,15 @@
                 <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 6h18v2H3V6zm0 5h18v2H3v-2zm0 5h18v2H3v-2z"/></svg>
             </button>
 
-            <!-- Navigation Links --><div id="nav-links" class="hidden md:flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-8 text-sm md:text-base absolute right-2 top-20 bg-brand-dark/95 rounded-lg p-3 w-48 shadow-lg border border-brand-secondary/30 md:static md:bg-transparent md:p-0 md:w-auto md:shadow-none md:border-0">
-                <a href="#home" class="text-brand-secondary hover:text-brand-accent transition duration-300">Home</a>
-                <a href="#who" class="text-brand-secondary hover:text-brand-accent transition duration-300">Who We Are</a>
-                <a href="#services" class="text-brand-secondary hover:text-brand-accent transition duration-300">Services</a>
-                <a href="#success" class="text-brand-secondary hover:text-brand-accent transition duration-300">Success Cases</a>
+            <!-- Navigation Links --><div id="nav-links" class="hidden md:flex flex-col md:flex-row space-y-1 md:space-y-0 md:space-x-8 text-sm md:text-base absolute inset-x-2 top-20 bg-brand-dark/95 rounded-lg p-4 w-auto shadow-lg border border-brand-secondary/30 md:static md:bg-transparent md:p-0 md:w-auto md:shadow-none md:border-0">
+                <a href="#home" class="block md:inline-block px-3 py-2 md:px-0 md:py-0 rounded-lg md:rounded-none text-brand-secondary hover:text-brand-accent hover:bg-brand-medium/40 md:hover:bg-transparent transition duration-300">Home</a>
+                <a href="#who" class="block md:inline-block px-3 py-2 md:px-0 md:py-0 rounded-lg md:rounded-none text-brand-secondary hover:text-brand-accent hover:bg-brand-medium/40 md:hover:bg-transparent transition duration-300">Who We Are</a>
+                <a href="#services" class="block md:inline-block px-3 py-2 md:px-0 md:py-0 rounded-lg md:rounded-none text-brand-secondary hover:text-brand-accent hover:bg-brand-medium/40 md:hover:bg-transparent transition duration-300">Services</a>
+                <a href="#success" class="block md:inline-block px-3 py-2 md:px-0 md:py-0 rounded-lg md:rounded-none text-brand-secondary hover:text-brand-accent hover:bg-brand-medium/40 md:hover:bg-transparent transition duration-300">Success Cases</a>
                 <a href="#contact" class="px-4 py-2 bg-brand-accent text-brand-text-dark rounded-lg hover:bg-brand-highlight transition duration-300 font-semibold shadow-md">Contact Us</a>
             </div>
+            <!-- Mobile backdrop -->
+            <div id="nav-backdrop" class="fixed inset-0 bg-black/50 hidden md:hidden"></div>
         </nav>
     </header>
 
@@ -678,15 +680,24 @@
         (function(){
             var btn = document.querySelector('[data-nav-toggle]');
             var panel = document.getElementById('nav-links');
+            var backdrop = document.getElementById('nav-backdrop');
             if (!btn || !panel) return;
             btn.addEventListener('click', function(){
-                if (panel.classList.contains('hidden')) panel.classList.remove('hidden');
-                else panel.classList.add('hidden');
+                var opening = panel.classList.contains('hidden');
+                if (opening) {
+                    panel.classList.remove('hidden');
+                    if (backdrop) backdrop.classList.remove('hidden');
+                } else {
+                    panel.classList.add('hidden');
+                    if (backdrop) backdrop.classList.add('hidden');
+                }
             });
             // Close when clicking a link (for small screens)
             panel.addEventListener('click', function(e){
-                if (e.target.tagName === 'A' && window.innerWidth < 768){ panel.classList.add('hidden'); }
+                if (e.target.tagName === 'A' && window.innerWidth < 768){ panel.classList.add('hidden'); if (backdrop) backdrop.classList.add('hidden'); }
             });
+            // Close on backdrop
+            if (backdrop) backdrop.addEventListener('click', function(){ panel.classList.add('hidden'); backdrop.classList.add('hidden'); });
         })();
 
         // Success cases carousel controls
